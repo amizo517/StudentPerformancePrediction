@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Performance Prediction</title>
+</head>
+<body>
+    <h1>Student Performance Prediction</h1>
+    <form action="/performanceprediction" method="post">
+        <label for="Gender">Gender:</label>
+        <select name="Gender" id="Gender" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select><br><br>
+
+        <label for="AttendanceRate">Attendance Rate:</label>
+        <input type="text" id="AttendanceRate" name="AttendanceRate" required><br><br>
+
+        <label for="StudyHoursPerWeek">Study Hours Per Week:</label>
+        <input type="text" id="StudyHoursPerWeek" name="StudyHoursPerWeek" required><br><br>
+
+        <label for="PreviousGrade">Previous Grade:</label>
+        <input type="text" id="PreviousGrade" name="PreviousGrade" required><br><br>
+
+        <label for="ExtracurricularActivities">Extracurricular Activities:</label>
+        <input type="text" id="ExtracurricularActivities" name="ExtracurricularActivities" required><br><br>
+
+        <label for="ParentalSupport">Parental Support:</label>
+        <select name="ParentalSupport" id="ParentalSupport" required>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+        </select><br><br>
+
+        <input type="submit" value="Predict">
+    </form>
+    <div id="result"></div>
+
+    <script>
+        document.querySelector("form").onsubmit = async (event) => {
+            event.preventDefault();
+
+            const formData = new FormData(event.target);
+            const response = await fetch("/performanceprediction", {
+                method: "POST",
+                body: formData,
+            });
+
+            const result = await response.json();
+            document.getElementById("result").innerText =
+                response.ok ? `Prediction: ${result.Student_Performance_Prediction}` : `Error: ${result.error}`;
+        };
+    </script>
+</body>
+</html>
