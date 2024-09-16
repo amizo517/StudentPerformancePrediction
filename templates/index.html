@@ -4,6 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Performance Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/static/images/process-improvement-efficiency-to-increase-productivity-management-strategy-raising-performance-quality-or-progress-conc.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        form {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            margin: 50px auto;
+        }
+
+        label, input, select {
+            display: block;
+            width: 100%;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            background-color: #3498db;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+
+        #result {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
 </head>
 <body>
     <h1>Student Performance Prediction</h1>
@@ -12,29 +60,30 @@
         <select name="Gender" id="Gender" required>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
-        </select><br><br>
+        </select>
 
         <label for="AttendanceRate">Attendance Rate:</label>
-        <input type="text" id="AttendanceRate" name="AttendanceRate" required><br><br>
+        <input type="text" id="AttendanceRate" name="AttendanceRate" required>
 
         <label for="StudyHoursPerWeek">Study Hours Per Week:</label>
-        <input type="text" id="StudyHoursPerWeek" name="StudyHoursPerWeek" required><br><br>
+        <input type="text" id="StudyHoursPerWeek" name="StudyHoursPerWeek" required>
 
         <label for="PreviousGrade">Previous Grade:</label>
-        <input type="text" id="PreviousGrade" name="PreviousGrade" required><br><br>
+        <input type="text" id="PreviousGrade" name="PreviousGrade" required>
 
         <label for="ExtracurricularActivities">Extracurricular Activities:</label>
-        <input type="text" id="ExtracurricularActivities" name="ExtracurricularActivities" required><br><br>
+        <input type="text" id="ExtracurricularActivities" name="ExtracurricularActivities" required>
 
         <label for="ParentalSupport">Parental Support:</label>
         <select name="ParentalSupport" id="ParentalSupport" required>
             <option value="High">High</option>
             <option value="Medium">Medium</option>
             <option value="Low">Low</option>
-        </select><br><br>
+        </select>
 
         <input type="submit" value="Predict">
     </form>
+
     <div id="result"></div>
 
     <script>
