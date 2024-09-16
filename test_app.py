@@ -1,17 +1,15 @@
-from flask import Flask,render_template,request,jsonify
+from flask import Flask, render_template, request, jsonify
 from test_utlis import StudentPerformacePrediction
 
-app=Flask(__name__)
+app = Flask(__name__)
 
 @app.route("/")
 def home():
     return render_template("index.html")
 
-@app.route("/performanceprediction",methods=["POST"])
-
+@app.route("/performanceprediction", methods=["POST"])
 def performanceprediction():
-    data=request.form
-
+    data = request.form
 
     Gender = data.get("Gender")
     AttendanceRate = data.get("AttendanceRate")
@@ -20,14 +18,14 @@ def performanceprediction():
     ExtracurricularActivities = data.get("ExtracurricularActivities")
     ParentalSupport = data.get("ParentalSupport")
 
-    std_pred_perf=StudentPerformacePrediction()
-    predict_perf=std_pred_perf.get_std_perf_pre(Gender, AttendanceRate,StudyHoursPerWeek,PreviousGrade,ExtracurricularActivities,ParentalSupport)
+    std_pred_perf = StudentPerformacePrediction()
+    try:
+        predict_perf = std_pred_perf.get_std_perf_pre(
+            Gender, AttendanceRate, StudyHoursPerWeek, PreviousGrade, ExtracurricularActivities, ParentalSupport
+        )
+        return jsonify({"Student_Performance_Prediction": predict_perf})
+    except ValueError as e:
+        return jsonify({"error": str(e)}), 400
 
-    return jsonify({"Student_Performace_Prediction_is":predict_perf})
-
-
-if __name__=="__main__":
-    app.run()
-
-
-    
+if __name__ == "__main__":
+    app.run(host="127.0.0.1", port=5000)
