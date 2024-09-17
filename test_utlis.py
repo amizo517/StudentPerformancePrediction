@@ -13,7 +13,7 @@ class StudentPerformacePrediction():
 
     def load_data(self):
         # Load model
-        with open(r"artifacts\Std_Perf_Pred.pkl", "rb") as f:
+        with open(r"artifacts/Std_Perf_Pred.pkl", "rb") as f:
             self.Std_Per_Pred_model = pickle.load(f)
 
         # Load columns data
